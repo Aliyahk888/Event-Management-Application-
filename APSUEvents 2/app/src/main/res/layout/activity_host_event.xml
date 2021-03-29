@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_dark_default"
     tools:context=".HostEvent">
 
     <TextView
@@ -11,10 +12,11 @@
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="208dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat"
         android:text="Event Privacy"
+        android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/privacy"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,44 +46,49 @@
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat"
         android:text="Event Title"
-        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/etype"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/montserrat"
         android:text="Event Type"
-        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/TypeGroup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ename" />
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="44dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ename"
-        app:layout_constraintTop_toBottomOf="@+id/next" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="110dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="1dp"
+        android:layout_height="50dp"
         app:layout_constraintEnd_toStartOf="@+id/next"
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="parent"
@@ -89,26 +96,29 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginStart="131dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="131dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
+        android:text="Create Event"
+        android:textAlignment="center"
         android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/ename"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:text="Create event" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="219dp"
-        android:layout_height="194dp"
+        android:id="@+id/TypeGroup"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etype"
@@ -122,6 +132,7 @@
             android:fontFamily="@font/montserrat"
             android:onClick="checkButton"
             android:text="Sports"
+            android:checked="true"
             android:textSize="18sp"
             tools:ignore="OnClick"
             tools:layout_editor_absoluteX="25dp"
@@ -134,6 +145,7 @@
             android:fontFamily="@font/montserrat"
             android:onClick="checkButton"
             android:text="Cultural"
+            android:checked="false"
             android:textSize="18sp"
             tools:ignore="OnClick"
             tools:layout_editor_absoluteX="23dp"
@@ -143,7 +155,7 @@
             android:id="@+id/education"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:fontFamily="@font/montserrat"
             android:onClick="checkButton"
             android:text="Education"
@@ -156,7 +168,7 @@
             android:id="@+id/business"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:fontFamily="@font/montserrat"
             android:onClick="checkButton"
             android:text="Business"
@@ -169,7 +181,7 @@
             android:id="@+id/charity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:fontFamily="@font/montserrat"
             android:onClick="checkButton"
             android:text="Fundraiser"
@@ -182,7 +194,7 @@
             android:id="@+id/other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:fontFamily="@font/montserrat"
             android:onClick="checkButton"
             android:text="Other"
@@ -194,15 +206,15 @@
 
     <RadioGroup
         android:id="@+id/privacy"
-        android:layout_width="219dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="197dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintStart_toEndOf="@+id/eprivacy"
+        app:layout_constraintTop_toBottomOf="@+id/TypeGroup">
 
 
         <RadioButton
@@ -230,7 +242,6 @@
             tools:layout_editor_absoluteY="398dp" />
 
     </RadioGroup>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
