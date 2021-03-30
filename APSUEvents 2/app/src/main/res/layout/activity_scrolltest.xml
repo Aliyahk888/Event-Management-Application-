@@ -4,68 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_google_signin_btn_text_dark_default"
-    tools:context=".HostEvent">
+    tools:context=".scrolltest">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/next"
-        app:layout_constraintStart_toEndOf="@+id/back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@drawable/roundedbuttons"
-        android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:background="@drawable/roundedbuttons"
-        android:text="Next"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:id="@+id/top bar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="131dp"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Create Event"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/etime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                <Button
+                    android:id="@+id/back"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundedbuttons"
+                    android:text="Back" />
 
-    <TextView
-        android:id="@+id/etitle"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Event Title"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/title"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="110dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/logo" />
+
+                <Button
+                    android:id="@+id/next"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/roundedbuttons"
+                    android:text="Next" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/title"
+                    android:layout_width="220dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/etitle"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Event Title"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Create Event"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/etype"
@@ -97,20 +115,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etype" />
-
-    <EditText
-        android:id="@+id/title"
-        android:layout_width="220dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etime"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <RadioGroup
         android:id="@+id/TypeGroup"
@@ -244,6 +248,5 @@
             tools:layout_editor_absoluteY="398dp" />
 
     </RadioGroup>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
