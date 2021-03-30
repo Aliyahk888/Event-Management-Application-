@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class HostEvent extends AppCompatActivity {
 
-    private Button back;
+    private Button back, next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,14 @@ public class HostEvent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HomePage.class));
+            }
+        });
+
+        next=(Button)findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HostEventDetails.class));
             }
         });
     }

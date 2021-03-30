@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ename"
+        android:id="@+id/etime"
         android:layout_width="80dp"
         android:layout_height="30dp"
         android:layout_marginStart="38dp"
@@ -44,7 +44,7 @@
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/email_input"
-        app:layout_constraintTop_toBottomOf="@+id/ename" />
+        app:layout_constraintTop_toBottomOf="@+id/etime" />
 
     <TextView
         android:id="@+id/phone"
@@ -84,7 +84,7 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/email_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ename" />
+        app:layout_constraintStart_toEndOf="@+id/etime" />
 
     <EditText
         android:id="@+id/email_input"

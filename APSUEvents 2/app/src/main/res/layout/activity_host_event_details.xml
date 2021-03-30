@@ -6,6 +6,139 @@
     android:layout_height="match_parent"
     tools:context=".HostEventDetails">
 
+        <Button
+            android:id="@+id/back"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbuttons"
+            android:text="Back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/next"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/roundedbuttons"
+            android:text="Next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pagetitle"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="105dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="106dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Event Details"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back" />
+
+        <TextView
+            android:id="@+id/etime"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Event Time"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/timePicker1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pagetitle" />
+
+        <TextView
+            android:id="@+id/edate"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="161dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Event Date"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/datePicker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etime" />
+
+        <TextView
+            android:id="@+id/eloc"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="104dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Event Location"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edate" />
+
+        <TimePicker
+            android:id="@+id/timePicker1"
+            android:layout_width="230dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etime"
+            app:layout_constraintTop_toBottomOf="@+id/pagetitle" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="230dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edate"
+            app:layout_constraintTop_toBottomOf="@+id/timePicker1" />
+
+        <Button
+            android:id="@+id/bt_picker"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="115dp"
+            android:background="@drawable/searchicon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/eloc"
+            app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+
+        <TextView
+            android:id="@+id/locdeets"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="86dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_picker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
