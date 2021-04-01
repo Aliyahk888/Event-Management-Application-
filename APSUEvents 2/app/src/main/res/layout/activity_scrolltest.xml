@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scrolltest">
+    tools:context=".Scrolltest">
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,236 +20,315 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/top bar"
+                android:id="@+id/TOPBAR"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
 
                 <Button
                     android:id="@+id/back"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundedbuttons"
-                    android:text="Back" />
+                    android:text="Back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="110dp"
                     android:layout_height="50dp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSave"
+                    app:layout_constraintStart_toEndOf="@+id/back"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/logo" />
 
                 <Button
-                    android:id="@+id/next"
+                    android:id="@+id/btnSave"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundedbuttons"
-                    android:text="Next" />
+                    android:text="Next"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ENameLayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:textAlignment="center">
 
                 <EditText
-                    android:id="@+id/title"
-                    android:layout_width="220dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="16dp"
+                    android:id="@+id/etitle_ip"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:ems="10"
+                    android:hint="Event Title"
                     android:inputType="textPersonName"
-                    android:textSize="20sp" />
+                    android:padding="10dp"
+                    android:textAlignment="textStart" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ETypeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <LinearLayout
+                    android:id="@+id/ETypeInnerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:textAlignment="center">
+
+                    <TextView
+                        android:id="@+id/etypetext"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:text="Event Type :"
+                        android:textSize="18sp"></TextView>
+
+                    <RadioGroup
+                        android:id="@+id/TypeGroup"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="40dp">
+
+                        <RadioButton
+                            android:id="@+id/sports"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Sports"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="25dp"
+                            tools:layout_editor_absoluteY="398dp" />
+
+                        <RadioButton
+                            android:id="@+id/cultural"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Cultural"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="23dp"
+                            tools:layout_editor_absoluteY="335dp" />
+
+                        <RadioButton
+                            android:id="@+id/education"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Education"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="25dp"
+                            tools:layout_editor_absoluteY="278dp" />
+
+                        <RadioButton
+                            android:id="@+id/business"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Business"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="25dp"
+                            tools:layout_editor_absoluteY="278dp" />
+
+                        <RadioButton
+                            android:id="@+id/charity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Fundraiser"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="25dp"
+                            tools:layout_editor_absoluteY="278dp" />
+
+                        <RadioButton
+                            android:id="@+id/other"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Other"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="25dp"
+                            tools:layout_editor_absoluteY="278dp" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/EPrivLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <LinearLayout
+                    android:id="@+id/EPrivInnerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:textAlignment="center">
+
+                    <TextView
+                        android:id="@+id/eprivtext"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:text="Event Type :"
+                        android:textSize="18sp"></TextView>
+
+                    <RadioGroup
+                        android:id="@+id/privacy"
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="40dp">
+
+                        <RadioButton
+                            android:id="@+id/open"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Open"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="25dp"
+                            tools:layout_editor_absoluteY="398dp" />
+
+                        <RadioButton
+                            android:id="@+id/closed"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="false"
+                            android:fontFamily="@font/montserrat"
+                            android:onClick="checkButton"
+                            android:text="Closed"
+                            android:textSize="18sp"
+                            tools:ignore="OnClick"
+                            tools:layout_editor_absoluteX="23dp"
+                            tools:layout_editor_absoluteY="335dp" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ETimeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:textAlignment="center">
+
+            <LinearLayout
+                android:id="@+id/ETimeInnerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:textAlignment="center">
 
                 <TextView
-                    android:id="@+id/etitle"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Event Title"
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="200dp"
+                    android:id="@+id/etimetext"
+                    android:layout_width="100dp"
                     android:layout_height="50dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text="Create Event"
-                    android:textAlignment="center"
-                    android:textSize="24sp" />
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:text="Event Time :"
+                    android:textSize="18sp"></TextView>
+
+                <TimePicker
+                    android:id="@+id/timePicker1"
+                    android:layout_width="230dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:timePickerMode="spinner" />
+
             </LinearLayout>
 
         </LinearLayout>
+            <LinearLayout
+                android:id="@+id/EDateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <LinearLayout
+                    android:id="@+id/EDateInnerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:textAlignment="center">
+
+                    <TextView
+                        android:id="@+id/edatetext"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:text="Event Date :"
+                        android:textSize="18sp"></TextView>
+
+                    <DatePicker
+                        android:id="@+id/datePicker"
+                        android:layout_width="230dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/etype"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Event Type"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/TypeGroup"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etitle" />
-
-    <TextView
-        android:id="@+id/eprivacy"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="182dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Event Privacy"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/privacy"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etype" />
-
-    <RadioGroup
-        android:id="@+id/TypeGroup"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etype"
-        app:layout_constraintTop_toBottomOf="@+id/title">
-
-
-        <RadioButton
-            android:id="@+id/sports"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Sports"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="398dp" />
-
-        <RadioButton
-            android:id="@+id/cultural"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Cultural"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="23dp"
-            tools:layout_editor_absoluteY="335dp" />
-
-        <RadioButton
-            android:id="@+id/education"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Education"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="278dp" />
-
-        <RadioButton
-            android:id="@+id/business"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Business"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="278dp" />
-
-        <RadioButton
-            android:id="@+id/charity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Fundraiser"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="278dp" />
-
-        <RadioButton
-            android:id="@+id/other"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Other"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="278dp" />
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/privacy"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/eprivacy"
-        app:layout_constraintTop_toBottomOf="@+id/TypeGroup">
-
-
-        <RadioButton
-            android:id="@+id/open"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Closed Event"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="23dp"
-            tools:layout_editor_absoluteY="335dp" />
-
-        <RadioButton
-            android:id="@+id/closed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:fontFamily="@font/montserrat"
-            android:onClick="checkButton"
-            android:text="Open Event"
-            android:textSize="18sp"
-            tools:ignore="OnClick"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="398dp" />
-
-    </RadioGroup>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

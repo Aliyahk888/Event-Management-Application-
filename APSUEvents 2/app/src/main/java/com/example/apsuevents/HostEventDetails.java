@@ -50,7 +50,7 @@ public class HostEventDetails extends AppCompatActivity {
         if(requestCode == PLACE_PICKER_REQUEST) {
             if(resultCode == RESULT_OK){
                 Place place = PlacePicker.getPlace(data, this);
-                tw.setText(place.toString());
+                tw.setText("Location has been selected !!");
             }
         }
     }

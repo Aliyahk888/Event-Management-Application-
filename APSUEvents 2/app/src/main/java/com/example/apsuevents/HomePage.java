@@ -17,6 +17,7 @@ public class HomePage extends AppCompatActivity {
 
     private Button buttonLogout;
     private Button host;
+    private Button profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class HomePage extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         buttonLogout=(Button)findViewById(R.id.buttonLogout);
         host=(Button)findViewById(R.id.host);
+        profile=(Button)findViewById(R.id.account);
 
         Toast.makeText(this, "Welcome "+user.getEmail(), Toast.LENGTH_LONG).show();
         buttonLogout.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +52,15 @@ public class HomePage extends AppCompatActivity {
         host.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),HostEvent.class));
+                startActivity(new Intent(getApplicationContext(),Scrolltest.class));
             }
         });
 
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),UserProfile.class));
+            }
+        });
     }
 }
