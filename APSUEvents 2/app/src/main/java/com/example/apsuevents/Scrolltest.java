@@ -44,6 +44,7 @@ public class Scrolltest extends AppCompatActivity {
     RadioButton privacyBtn;
     DatePicker myDatePicker;
     TimePicker myTimePicker;
+    int priv_flag=0;
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -85,12 +86,24 @@ public class Scrolltest extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if(isEmpty(name) || isEmpty(cap) || isEmpty(desc) || isEmpty(tw)) {
                     Toast.makeText(getApplicationContext(),"Please Enter All fields",Toast.LENGTH_LONG).show();
                 }
+
+
+                else if(!verifyPassword()&&priv_flag==0){
+                    Toast.makeText(getApplicationContext(),"Passwords Do Not Match",Toast.LENGTH_LONG).show();
+
+
+                }
+
+
                 else {
                     Toast.makeText(getApplicationContext(),"Event Created",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(), HomePage.class));
+
                 }
             }
         });
@@ -149,13 +162,14 @@ public class Scrolltest extends AppCompatActivity {
                 Integer ehour = myTimePicker.getHour();
                 Integer emin= myTimePicker.getMinute();
                 String etime = ehour+":"+emin;
+                String pswd_string= pswd.getText().toString().trim();
 
 
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {
-                    createUser(ename, event, privacy, ecap, edesc, edate, etime);
+                    createUser(ename, event, privacy, ecap, edesc, edate, etime, pswd_string);
                 } else {
-                    updateUser(ename, event, privacy, ecap, edesc, edate, etime);
+                    updateUser(ename, event, privacy, ecap, edesc, edate, etime, pswd_string);
                 }
             }
         });
@@ -178,13 +192,13 @@ public class Scrolltest extends AppCompatActivity {
     /**
      * Creating new user node under 'users'
      */
-    private void createUser(String name, String event, String privacy, String capacity, String description, String date, String time) {
+    private void createUser(String name, String event, String privacy, String capacity, String description, String date, String time, String pswd) {
 
         if (TextUtils.isEmpty(userId)) {
             userId = mFirebaseDatabase.push().getKey();
         }
 
-        User user = new User(name, event, privacy, capacity, description, date, time);
+        User user = new User(name, event, privacy, capacity, description, date, time, pswd);
 
         mFirebaseDatabase.child(userId).setValue(user);
 
@@ -225,7 +239,7 @@ public class Scrolltest extends AppCompatActivity {
         });
     }
 
-    private void updateUser(String name, String event, String privacy, String capacity, String description, String date, String time) {
+    private void updateUser(String name, String event, String privacy, String capacity, String description, String date, String time, String pswd) {
         // updating the user via child nodes
         if (!TextUtils.isEmpty(name))
             mFirebaseDatabase.child(userId).child("name").setValue(name);
@@ -263,6 +277,7 @@ public class Scrolltest extends AppCompatActivity {
     public void closed_enabled(View view) {
         if(epriv.isChecked())
         {
+            priv_flag=0;
             pswd.setVisibility(View.VISIBLE);
             cpswd.setVisibility(View.VISIBLE);
         }
@@ -271,8 +286,20 @@ public class Scrolltest extends AppCompatActivity {
     public void open_enabled(View view) {
         if(epriv2.isChecked())
         {
+            priv_flag=1;
             pswd.setVisibility(View.GONE);
             cpswd.setVisibility(View.GONE);
         }
+    }
+
+    public boolean verifyPassword(){
+        pswd = (EditText)findViewById(R.id.closed_psswd);
+        String pswd_string= pswd.getText().toString().trim();
+        cpswd = (EditText)findViewById(R.id.conf_psswd);
+        String cpswd_string= cpswd.getText().toString().trim();
+        if(cpswd_string!=pswd_string)
+            return false;
+        else return true;
+
     }
 }

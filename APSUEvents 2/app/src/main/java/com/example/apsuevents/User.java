@@ -10,6 +10,7 @@ public class User {
     public String description;
     public String date;
     public String time;
+    public String password;
 
 
     // Default constructor required for calls to
@@ -17,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String event, String privacy, String capacity, String description, String date, String time) {
+    public User(String name, String event, String privacy, String capacity, String description, String date, String time, String password) {
         this.name = name;
         this.event=event;
         this.privacy=privacy;
@@ -25,6 +26,7 @@ public class User {
         this.description=description;
         this.date=date;
         this.time=time;
+        this.password=password;
 
 
     }
