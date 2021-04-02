@@ -3,6 +3,7 @@ package com.example.apsuevents;
 public class User {
     public String name;
     public String email;
+    public String phone;
     public String event;
     public String privacy;
 
@@ -12,10 +13,11 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String event, String privacy) {
+    public User(String name, String email,String phone, String event, String privacy) {
         this.name = name;
         this.email = email;
         this.event=event;
+        this.phone=phone;
         this.privacy=privacy;
 
     }

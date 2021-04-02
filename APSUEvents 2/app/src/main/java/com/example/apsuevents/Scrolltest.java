@@ -24,9 +24,9 @@ public class Scrolltest extends AppCompatActivity {
 
     Button btpicker, next, back;
     RadioGroup etypelist, eprivlist;
-    RadioButton etype, epriv;
+    RadioButton etype, epriv, epriv2;
     TextView tw;
-    EditText name, cap, desc;
+    EditText name, cap, desc, pswd, cpswd;
     int PLACE_PICKER_REQUEST = 1;
     String etitle, ecap, edesc, pcheck;
 
@@ -36,15 +36,19 @@ public class Scrolltest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolltest);
 
-        btpicker = findViewById(R.id.bt_picker);
-        back = findViewById(R.id.back);
-        next = findViewById(R.id.btnSave);
-        tw = findViewById(R.id.eplaceseltext);
-        etypelist = findViewById(R.id.TypeGroup);
-        eprivlist = findViewById(R.id.privacy);
-        name = findViewById(R.id.etitle_ip);
-        cap = findViewById(R.id.ecap_ip);
-        desc = findViewById(R.id.edesc_ip);
+        btpicker = (Button) findViewById(R.id.bt_picker);
+        back = (Button) findViewById(R.id.back);
+        next = (Button) findViewById(R.id.btnSave);
+        tw = (TextView) findViewById(R.id.eplaceseltext);
+        etypelist = (RadioGroup) findViewById(R.id.TypeGroup);
+        eprivlist =(RadioGroup) findViewById(R.id.privacy);
+        name = (EditText)findViewById(R.id.etitle_ip);
+        cap = (EditText)findViewById(R.id.ecap_ip);
+        pswd = (EditText)findViewById(R.id.closed_psswd);
+        cpswd = (EditText)findViewById(R.id.conf_psswd);
+        desc = (EditText) findViewById(R.id.edesc_ip);
+        epriv=(RadioButton)findViewById(R.id.closed);
+        epriv2=(RadioButton)findViewById(R.id.open);
 
         etitle = name.getText().toString();
         ecap = cap.getText().toString();
@@ -63,6 +67,15 @@ public class Scrolltest extends AppCompatActivity {
                 }
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),HomePage.class));
+            }
+        });
+
+
 
         btpicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,4 +110,19 @@ public class Scrolltest extends AppCompatActivity {
         return tw.getText().toString().trim().length() == 0;
     }
 
+    public void closed_enabled(View view) {
+        if(epriv.isChecked())
+        {
+            pswd.setVisibility(View.VISIBLE);
+            cpswd.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void open_enabled(View view) {
+        if(epriv2.isChecked())
+        {
+            pswd.setVisibility(View.GONE);
+            cpswd.setVisibility(View.GONE);
+        }
+    }
 }

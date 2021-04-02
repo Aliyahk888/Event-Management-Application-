@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/delacc"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="131dp"
@@ -79,10 +79,10 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/backhome" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/backhome"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="130dp"

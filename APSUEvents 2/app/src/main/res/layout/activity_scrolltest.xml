@@ -8,7 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -200,10 +200,10 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:fontFamily="@font/montserrat"
-                            android:onClick="checkButton"
                             android:text="Open"
                             android:textSize="18sp"
                             tools:ignore="OnClick"
+                            android:onClick="open_enabled"
                             tools:layout_editor_absoluteX="25dp"
                             tools:layout_editor_absoluteY="398dp" />
 
@@ -212,55 +212,77 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat"
-                            android:onClick="checkButton"
+                            android:onClick="closed_enabled"
                             android:text="Closed"
                             android:textSize="18sp"
                             tools:ignore="OnClick"
                             tools:layout_editor_absoluteX="23dp"
                             tools:layout_editor_absoluteY="335dp" />
+
                     </RadioGroup>
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/closed_psswd"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:visibility="gone"
+                    android:hint="Enter Password"
+                    android:inputType="textPassword" />
+
+                <EditText
+                    android:id="@+id/conf_psswd"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:visibility="gone"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ETimeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:textAlignment="center">
+
+                <LinearLayout
+                    android:id="@+id/ETimeInnerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:textAlignment="center">
+
+                    <TextView
+                        android:id="@+id/etimetext"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
+                        android:text="Event Time :"
+                        android:textSize="18sp"></TextView>
+
+                    <TimePicker
+                        android:id="@+id/timePicker1"
+                        android:layout_width="230dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:timePickerMode="spinner" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ETimeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:textAlignment="center">
-
-            <LinearLayout
-                android:id="@+id/ETimeInnerLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
-                android:textAlignment="center">
-
-                <TextView
-                    android:id="@+id/etimetext"
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginStart="30dp"
-                    android:text="Event Time :"
-                    android:textSize="18sp"></TextView>
-
-                <TimePicker
-                    android:id="@+id/timePicker1"
-                    android:layout_width="230dp"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:timePickerMode="spinner" />
-
-            </LinearLayout>
-
-        </LinearLayout>
             <LinearLayout
                 android:id="@+id/EDateLayout"
                 android:layout_width="match_parent"
@@ -282,8 +304,8 @@
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:text="Event Date :"
                         android:textSize="18sp"></TextView>
 
@@ -320,8 +342,8 @@
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:text="Event Location :"
                         android:textSize="18sp"></TextView>
 
@@ -373,8 +395,8 @@
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:text="Event Capacity :"
                         android:textSize="18sp"></TextView>
 
@@ -382,15 +404,16 @@
                         android:id="@+id/ecap_ip"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:layout_marginStart="30dp"
                         android:layout_gravity="center"
+                        android:layout_marginStart="30dp"
+                        android:ems="10"
                         android:gravity="center"
                         android:inputType="number"
                         android:padding="10dp" />
 
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/EDescLayout"
                 android:layout_width="match_parent"
@@ -415,8 +438,8 @@
                         android:layout_width="100dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:gravity="center"
                         android:layout_marginStart="30dp"
+                        android:gravity="center"
                         android:text="Event Description :"
                         android:textSize="18sp"></TextView>
 
@@ -434,4 +457,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

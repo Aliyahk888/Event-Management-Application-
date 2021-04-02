@@ -17,13 +17,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText eml;
-    private EditText pwd;
-    private Button btn1;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private EditText eml, pwd, fullname, ph;
+    private TextView tw;
+    private Button btn1, canc;
 
 
 
@@ -34,13 +38,25 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         mAuth = FirebaseAuth.getInstance();
         eml=(EditText)findViewById(R.id.email_input);
-        //pwd=(EditText)findViewById(R.id.pwd_input);
+        pwd=(EditText)findViewById(R.id.psswd_input);
+        fullname=(EditText)findViewById(R.id.name_input);
+        ph=(EditText)findViewById(R.id.phone_input);
         btn1=(Button)findViewById(R.id.register);
+        canc =(Button) findViewById(R.id.exit);
+
+        canc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            }
+        });
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 registerUser();
+
             }
         });
 
@@ -57,12 +73,12 @@ public class SignUp extends AppCompatActivity {
         String password = pwd.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter E-mail", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please enter Password", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -78,10 +94,6 @@ public class SignUp extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
 
     }
 
