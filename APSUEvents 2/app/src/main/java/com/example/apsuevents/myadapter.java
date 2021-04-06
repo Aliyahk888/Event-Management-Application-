@@ -3,6 +3,7 @@ package com.example.apsuevents;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +24,18 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
 
         holder.name.setText(User.getName());
         holder.type.setText(User.getEvent());
-        holder.priv.setText(User.getPrivacy());
-
+        holder.date.setText(User.getDate());
+        holder.curCap.setText(User.getCurCapacity());
+        holder.cap.setText("/ "+User.getCapacity());
+        if(User.getPrivacy().equals("Closed")) {
+            holder.privFlag = 1;
+        }
+        if(holder.privFlag == 0){
+            holder.priv_img.setBackgroundResource(R.drawable.unlock);
+        }
+        else{
+            holder.priv_img.setBackgroundResource(R.drawable.lock);
+        }
     }
 
     @NonNull
@@ -37,14 +48,18 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
 
     class myviewholder extends RecyclerView.ViewHolder
     {
-
-        TextView name,type,priv;
+        int privFlag = 0;
+        TextView name,type,date,cap,curCap;
+        ImageView priv_img;
         public myviewholder(@NonNull View itemView)
         {
             super(itemView);
             name=(TextView)itemView.findViewById(R.id.nametext);
             type=(TextView)itemView.findViewById(R.id.coursetext);
-            priv=(TextView)itemView.findViewById(R.id.emailtext);
+            date=(TextView)itemView.findViewById(R.id.datetext);
+            cap=(TextView)itemView.findViewById(R.id.captext);
+            curCap=(TextView)itemView.findViewById(R.id.curCap);
+            priv_img=(ImageView)itemView.findViewById(R.id.privimg);
         }
     }
 }

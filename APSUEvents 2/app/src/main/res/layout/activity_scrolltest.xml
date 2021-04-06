@@ -369,6 +369,12 @@
                     android:textAlignment="center"
                     android:textSize="18sp"></TextView>
 
+                <TextView
+                    android:id="@+id/eplaceidtext"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="invisible"></TextView>
+
             </LinearLayout>
 
             <LinearLayout
@@ -454,12 +460,6 @@
                         android:padding="10dp" />
 
                 </LinearLayout>
-
-                <Button
-                    android:id="@+id/button3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

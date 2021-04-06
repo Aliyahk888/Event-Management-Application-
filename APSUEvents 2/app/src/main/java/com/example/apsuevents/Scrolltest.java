@@ -33,13 +33,13 @@ import java.text.DateFormat;
 
 public class Scrolltest extends AppCompatActivity {
 
-    Button btpicker, next, back, button3;
+    Button btpicker, next, back;
     RadioGroup etypelist, eprivlist;
     RadioButton etype, epriv, epriv2;
-    TextView tw;
+    TextView tw, tid;
     EditText name, cap, desc, pswd, cpswd;
     int PLACE_PICKER_REQUEST = 1;
-    String etitle, ecap, edesc, pcheck;
+    String etitle, ecap, edesc, pcheck, ecur_cap;
     RadioButton eventBtn;
     RadioButton privacyBtn;
     DatePicker myDatePicker;
@@ -62,6 +62,7 @@ public class Scrolltest extends AppCompatActivity {
         back = (Button) findViewById(R.id.back);
         next = (Button) findViewById(R.id.btnSave);
         tw = (TextView) findViewById(R.id.eplaceseltext);
+        tid = (TextView) findViewById(R.id.eplaceidtext);
         etypelist = (RadioGroup) findViewById(R.id.TypeGroup);
         eprivlist =(RadioGroup) findViewById(R.id.privacy);
         name = (EditText)findViewById(R.id.etitle_ip);
@@ -79,7 +80,6 @@ public class Scrolltest extends AppCompatActivity {
         ecap = cap.getText().toString();
         edesc = desc.getText().toString();
         pcheck = tw.toString();
-        button3=(Button)findViewById(R.id.button3);
 
 
 
@@ -87,23 +87,32 @@ public class Scrolltest extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String ename= name.getText().toString();
+                String ecap= cap.getText().toString();
+                String edesc= desc.getText().toString();
+                int selected = etypelist.getCheckedRadioButtonId();
+                eventBtn=(RadioButton)findViewById(selected);
+                String event = eventBtn.getText().toString();
+                int priv=eprivlist.getCheckedRadioButtonId();
+                privacyBtn=(RadioButton)findViewById(priv);
+                String privacy= privacyBtn.getText().toString();
+                String placeID = tid.getText().toString();
+                String edate = DateFormat.getDateInstance().format(myDatePicker.getCalendarView().getDate());
+                Integer ehour = myTimePicker.getHour();
+                Integer emin= myTimePicker.getMinute();
+                String etime = ehour+":"+emin;
+                String pswd_string= pswd.getText().toString().trim();
 
                 if(isEmpty(name) || isEmpty(cap) || isEmpty(desc) || isEmpty(tw)) {
                     Toast.makeText(getApplicationContext(),"Please Enter All fields",Toast.LENGTH_LONG).show();
                 }
-
-
-                else if(!verifyPassword()&&priv_flag==0){
+                else if(verifyPassword()&&priv_flag==0){
                     Toast.makeText(getApplicationContext(),"Passwords Do Not Match",Toast.LENGTH_LONG).show();
-
-
                 }
-
-
-                else {
-                    Toast.makeText(getApplicationContext(),"Event Created",Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));
-
+                else{
+                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string, placeID);
+                    Toast.makeText(getApplicationContext(),"Event Created !!!",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(),HomePage.class));
                 }
             }
         });
@@ -144,7 +153,7 @@ public class Scrolltest extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
 
-
+        /*
         // Save / update the user
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,38 +176,25 @@ public class Scrolltest extends AppCompatActivity {
 
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {
-                    createUser(ename, event, privacy, ecap, edesc, edate, etime, pswd_string);
+                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string);
                 } else {
                     updateUser(ename, event, privacy, ecap, edesc, edate, etime, pswd_string);
                 }
             }
         });
-
-
-
-        toggleButton();
-
-
+         */
     }
-
-    private void toggleButton() {
-        if (TextUtils.isEmpty(userId)) {
-            button3.setText("Submit");
-        } else {
-            button3.setText("Update");
-        }
-    }
-
     /**
      * Creating new user node under 'users'
      */
-    private void createUser(String name, String event, String privacy, String capacity, String description, String date, String time, String pswd) {
+    private void createUser(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String pswd, String placeID) {
 
+        cur_capacity = "0";
         if (TextUtils.isEmpty(userId)) {
             userId = mFirebaseDatabase.push().getKey();
         }
 
-        User user = new User(name, event, privacy, capacity, description, date, time, pswd);
+        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, placeID);
 
         mFirebaseDatabase.child(userId).setValue(user);
 
@@ -227,8 +223,6 @@ public class Scrolltest extends AppCompatActivity {
                 // clear edit text
                 name.setText("");
 
-
-                toggleButton();
             }
 
             @Override
@@ -239,22 +233,6 @@ public class Scrolltest extends AppCompatActivity {
         });
     }
 
-    private void updateUser(String name, String event, String privacy, String capacity, String description, String date, String time, String pswd) {
-        // updating the user via child nodes
-        if (!TextUtils.isEmpty(name))
-            mFirebaseDatabase.child(userId).child("name").setValue(name);
-            mFirebaseDatabase.child(userId).child("event").setValue(event);
-            mFirebaseDatabase.child(userId).child("privacy").setValue(privacy);
-            mFirebaseDatabase.child(userId).child("capacity").setValue(capacity);
-            mFirebaseDatabase.child(userId).child("description").setValue(description);
-            mFirebaseDatabase.child(userId).child("date").setValue(date);
-            mFirebaseDatabase.child(userId).child("time").setValue(time);
-
-
-    }
-
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -263,6 +241,7 @@ public class Scrolltest extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 Place place = PlacePicker.getPlace(data, this);
                 tw.setText("!! Location has been selected !!");
+                tid.setText(place.getId());
             }
         }
     }

@@ -2,8 +2,6 @@ package com.example.apsuevents;
 
 public class User {
     public String name;
-    public String email;
-    public String phone;
     public String event;
     public String privacy;
     public String capacity;
@@ -11,14 +9,15 @@ public class User {
     public String date;
     public String time;
     public String password;
-
+    public String cur_cap;
+    public String place;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
     public User() {
     }
 
-    public User(String name, String event, String privacy, String capacity, String description, String date, String time, String password) {
+    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String Place) {
         this.name = name;
         this.event = event;
         this.privacy = privacy;
@@ -27,8 +26,8 @@ public class User {
         this.date = date;
         this.time = time;
         this.password = password;
-
-
+        this.cur_cap = cur_capacity;
+        this.place = Place;
     }
 
 
@@ -47,6 +46,15 @@ public class User {
     public String getCapacity() {
         return capacity;
     }
+
+    public String getCurCapacity() {
+        return cur_cap;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
 }
 
 

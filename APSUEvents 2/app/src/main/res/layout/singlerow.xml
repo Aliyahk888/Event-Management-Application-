@@ -2,52 +2,80 @@
 
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-app:cardCornerRadius="5dp"
-android:elevation="5dp"
-app:cardUseCompatPadding="true">
-
-<RelativeLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:elevation="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true">
 
-
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nametext"
-        android:text="This is Event Name"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:textColor="#000"
-        android:layout_marginLeft="10dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/coursetext"
-        android:text="This is Event Type"
-        android:textSize="25sp"
-        android:textColor="#000"
-        android:layout_below="@id/nametext"
-        android:layout_marginLeft="10dp"/>
+        android:clickable="true"
+        android:padding="15dp">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/emailtext"
-        android:text="This is Event Capacity"
-        android:textSize="25sp"
-        android:textColor="#000"
-        android:layout_below="@id/coursetext"
-        android:layout_marginLeft="10dp"/>
+        <TextView
+            android:id="@+id/nametext"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="This is Event Name"
+            android:textColor="#000"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/coursetext"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nametext"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:text="Type"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/datetext"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coursetext"
+            android:layout_marginLeft="10dp"
+            android:text="Date"
+            android:textColor="#000"
+            android:textSize="25sp" />
+
+        <ImageView
+            android:id="@+id/privimg"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@+id/nametext" />
+
+        <TextView
+            android:id="@+id/captext"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="75dp"
+            android:layout_toEndOf="@+id/curCap"
+            android:text="Cap"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/curCap"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="75dp"
+            android:layout_toEndOf="@+id/datetext"
+            android:textAlignment="textEnd"
+            android:textSize="25sp" />
+
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
