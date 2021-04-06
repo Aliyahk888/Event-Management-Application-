@@ -20,14 +20,34 @@ public class User {
 
     public User(String name, String event, String privacy, String capacity, String description, String date, String time, String password) {
         this.name = name;
-        this.event=event;
-        this.privacy=privacy;
-        this.capacity=capacity;
-        this.description=description;
-        this.date=date;
-        this.time=time;
-        this.password=password;
+        this.event = event;
+        this.privacy = privacy;
+        this.capacity = capacity;
+        this.description = description;
+        this.date = date;
+        this.time = time;
+        this.password = password;
 
 
     }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public String getPrivacy() {
+        return privacy;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
 }
+
+
+

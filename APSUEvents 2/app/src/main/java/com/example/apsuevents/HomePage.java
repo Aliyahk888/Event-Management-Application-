@@ -18,6 +18,7 @@ public class HomePage extends AppCompatActivity {
     private Button buttonLogout;
     private Button host;
     private Button profile;
+    private Button explore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class HomePage extends AppCompatActivity {
         buttonLogout=(Button)findViewById(R.id.buttonLogout);
         host=(Button)findViewById(R.id.host);
         profile=(Button)findViewById(R.id.account);
+        explore=(Button)findViewById(R.id.explore);
 
         Toast.makeText(this, "Welcome "+user.getEmail(), Toast.LENGTH_LONG).show();
         buttonLogout.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +62,14 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),UserProfile.class));
+            }
+        });
+
+        explore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+
             }
         });
     }

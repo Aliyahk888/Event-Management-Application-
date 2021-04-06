@@ -50,6 +50,13 @@ public class HostEvent extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), HomePage.class));
             }
         });
+        next=(Button)findViewById(R.id.btnSave);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+            }
+        });
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
