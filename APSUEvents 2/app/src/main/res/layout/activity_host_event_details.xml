@@ -7,7 +7,7 @@
     tools:context=".HostEventDetails">
 
         <Button
-            android:id="@+id/back"
+            android:id="@+id/back_tobrowse"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/roundedbuttons"
@@ -20,7 +20,7 @@
             android:layout_width="110dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toStartOf="@+id/btnSave"
-            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintStart_toEndOf="@+id/back_tobrowse"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
 
@@ -46,7 +46,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/back" />
+            app:layout_constraintTop_toBottomOf="@+id/back_tobrowse" />
 
         <TextView
             android:id="@+id/etime"

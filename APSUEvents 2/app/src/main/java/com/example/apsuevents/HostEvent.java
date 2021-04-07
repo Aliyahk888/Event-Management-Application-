@@ -43,7 +43,7 @@ public class HostEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_event);
 
-        back=(Button)findViewById(R.id.back);
+        back=(Button)findViewById(R.id.back_tobrowse);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

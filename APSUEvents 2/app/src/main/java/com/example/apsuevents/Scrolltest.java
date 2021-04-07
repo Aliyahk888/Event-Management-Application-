@@ -5,14 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -33,7 +31,7 @@ import java.text.DateFormat;
 
 public class Scrolltest extends AppCompatActivity {
 
-    Button btpicker, next, back;
+    Button btpicker, next, back, button3;
     RadioGroup etypelist, eprivlist;
     RadioButton etype, epriv, epriv2;
     TextView tw, tid;
@@ -45,6 +43,7 @@ public class Scrolltest extends AppCompatActivity {
     DatePicker myDatePicker;
     TimePicker myTimePicker;
     int priv_flag=0;
+
 
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -59,7 +58,7 @@ public class Scrolltest extends AppCompatActivity {
         setContentView(R.layout.activity_scrolltest);
 
         btpicker = (Button) findViewById(R.id.bt_picker);
-        back = (Button) findViewById(R.id.back);
+        back = (Button) findViewById(R.id.back_tobrowse);
         next = (Button) findViewById(R.id.btnSave);
         tw = (TextView) findViewById(R.id.eplaceseltext);
         tid = (TextView) findViewById(R.id.eplaceidtext);
@@ -74,12 +73,16 @@ public class Scrolltest extends AppCompatActivity {
         epriv2=(RadioButton)findViewById(R.id.open);
         myDatePicker = (DatePicker) findViewById(R.id.datePicker);
         myTimePicker = (TimePicker)findViewById(R.id.timePicker1);
+        button3= (Button)findViewById(R.id.button3);
+
+
 
 
         etitle = name.getText().toString();
         ecap = cap.getText().toString();
         edesc = desc.getText().toString();
         pcheck = tw.toString();
+
 
 
 
@@ -110,7 +113,7 @@ public class Scrolltest extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Passwords Do Not Match",Toast.LENGTH_LONG).show();
                 }
                 else{
-                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string, placeID);
+                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string);
                     Toast.makeText(getApplicationContext(),"Event Created !!!",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),HomePage.class));
                 }
@@ -153,8 +156,7 @@ public class Scrolltest extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
 
-        /*
-        // Save / update the user
+
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,22 +179,21 @@ public class Scrolltest extends AppCompatActivity {
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {
                     createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string);
-                } else {
-                    updateUser(ename, event, privacy, ecap, edesc, edate, etime, pswd_string);
                 }
             }
         });
-         */
+
     }
     /**
      * Creating new user node under 'users'
      */
-    private void createUser(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String pswd, String placeID) {
+    private void createUser(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String pswd) {
 
         cur_capacity = "0";
         if (TextUtils.isEmpty(userId)) {
             userId = mFirebaseDatabase.push().getKey();
         }
+        String placeID = tid.getText().toString();
 
         User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, placeID);
 
@@ -281,4 +282,8 @@ public class Scrolltest extends AppCompatActivity {
         else return true;
 
     }
+
+
+
+
 }

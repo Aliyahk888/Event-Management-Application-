@@ -1,9 +1,16 @@
 package com.example.apsuevents;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +26,7 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull User User)
+    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final User User)
     {
 
         holder.name.setText(User.getName());
@@ -36,6 +43,12 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
         else{
             holder.priv_img.setBackgroundResource(R.drawable.lock);
         }
+        holder.rel_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openevent(v, User);
+            }
+        });
     }
 
     @NonNull
@@ -51,6 +64,7 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
         int privFlag = 0;
         TextView name,type,date,cap,curCap;
         ImageView priv_img;
+        RelativeLayout rel_id;
         public myviewholder(@NonNull View itemView)
         {
             super(itemView);
@@ -60,7 +74,22 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
             cap=(TextView)itemView.findViewById(R.id.captext);
             curCap=(TextView)itemView.findViewById(R.id.curCap);
             priv_img=(ImageView)itemView.findViewById(R.id.privimg);
+            rel_id=(RelativeLayout)itemView.findViewById(R.id.rel_id);
         }
     }
+
+    public void openevent(View view, User user) {
+        Intent open = new Intent(view.getContext(), EventPage.class);
+        open.putExtra("Title",user.name);
+        open.putExtra("CurCap", user.cur_cap);
+        open.putExtra("Capacity", user.capacity);
+        open.putExtra("Date", user.date);
+        open.putExtra("Time", user.time);
+        open.putExtra("Desc", user.description);
+        view.getContext().startActivity(open);
+    }
+
+
+
 }
 
