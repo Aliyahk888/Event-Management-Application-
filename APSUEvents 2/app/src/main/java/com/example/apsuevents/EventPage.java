@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +31,7 @@ public class EventPage extends AppCompatActivity {
     TextView EventDate;
     TextView EventTime;
     TextView EventDesc;
-    Button back;
+    Button back, join;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,15 @@ public class EventPage extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+            }
+        });
+
+        join=(Button)findViewById(R.id.joinbutton);
+        join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
             }
         });
