@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class EventPage extends AppCompatActivity {
@@ -32,18 +33,27 @@ public class EventPage extends AppCompatActivity {
     TextView EventTime;
     TextView EventDesc;
     Button back, join;
+    String title;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_page);
         Bundle b = getIntent().getExtras();
-        String title= b.getString("Title");
-        String curcap= b.getString("CurCap");
+        title= b.getString("Title");
+        final String curcap= b.getString("CurCap");
         String capacity= b.getString("Capacity");
         String date= b.getString("Date");
         String time= b.getString("Time");
         String desc= b.getString("Desc");
+
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+// get reference to 'users' node
+        mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
         back=(Button)findViewById(R.id.back_tobrowse);
         back.setOnClickListener(new View.OnClickListener() {
@@ -53,10 +63,40 @@ public class EventPage extends AppCompatActivity {
             }
         });
 
+       Query query = mFirebaseDatabase.orderByChild("name").equalTo(title);
+
+
         join=(Button)findViewById(R.id.joinbutton);
         join.setOnClickListener(new View.OnClickListener() {
+
+
+            int val=Integer.parseInt(curcap)+1;
+            String newval= Integer.toString(val);
             @Override
             public void onClick(View v) {
+                mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                         if(childSnapshot.child("name").getValue().equals(title)) {
+                             String parent = childSnapshot.getKey();
+
+                             mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
+                         }
+                        }
+                        }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+
+
                 Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
             }
@@ -81,3 +121,6 @@ public class EventPage extends AppCompatActivity {
     }
 
 }
+
+//                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+//                            String parent = childSnapshot.getKey();

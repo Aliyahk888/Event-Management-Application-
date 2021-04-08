@@ -86,6 +86,8 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
         open.putExtra("Date", user.date);
         open.putExtra("Time", user.time);
         open.putExtra("Desc", user.description);
+        open.putExtra("CurCap", user.cur_cap);
+
         view.getContext().startActivity(open);
     }
 
