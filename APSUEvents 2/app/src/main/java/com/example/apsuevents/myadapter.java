@@ -26,29 +26,30 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final User User)
-    {
-
-        holder.name.setText(User.getName());
-        holder.type.setText(User.getEvent());
-        holder.date.setText(User.getDate());
-        holder.curCap.setText(User.getCurCapacity());
-        holder.cap.setText("/ "+User.getCapacity());
-        if(User.getPrivacy().equals("Closed")) {
-            holder.privFlag = 1;
-        }
-        if(holder.privFlag == 0){
-            holder.priv_img.setBackgroundResource(R.drawable.unlock);
-        }
-        else{
-            holder.priv_img.setBackgroundResource(R.drawable.lock);
-        }
-        holder.rel_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openevent(v, User);
+    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final User User) {
+        if (User.getCurCapacity().equals(User.getCapacity()))
+            holder.rel_id.setVisibility(View.GONE);
+        else {
+            holder.name.setText(User.getName());
+            holder.type.setText(User.getEvent());
+            holder.date.setText(User.getDate());
+            holder.curCap.setText(User.getCurCapacity());
+            holder.cap.setText("/ " + User.getCapacity());
+            if (User.getPrivacy().equals("Closed")) {
+                holder.privFlag = 1;
             }
-        });
+            if (holder.privFlag == 0) {
+                holder.priv_img.setBackgroundResource(R.drawable.unlock);
+            } else {
+                holder.priv_img.setBackgroundResource(R.drawable.lock);
+            }
+            holder.rel_id.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openevent(v, User);
+                }
+            });
+        }
     }
 
     @NonNull

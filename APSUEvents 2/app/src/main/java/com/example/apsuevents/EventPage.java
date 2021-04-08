@@ -44,7 +44,7 @@ public class EventPage extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         title= b.getString("Title");
         final String curcap= b.getString("CurCap");
-        String capacity= b.getString("Capacity");
+        final String capacity= b.getString("Capacity");
         String date= b.getString("Date");
         String time= b.getString("Time");
         String desc= b.getString("Desc");
@@ -72,6 +72,7 @@ public class EventPage extends AppCompatActivity {
 
             int val=Integer.parseInt(curcap)+1;
             String newval= Integer.toString(val);
+            int cap_int=Integer.parseInt(capacity);
             @Override
             public void onClick(View v) {
                 mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -81,7 +82,16 @@ public class EventPage extends AppCompatActivity {
                          if(childSnapshot.child("name").getValue().equals(title)) {
                              String parent = childSnapshot.getKey();
 
-                             mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
+                             if (val > cap_int) {
+                                 Toast.makeText(getApplicationContext(), "Event full, sorry!", Toast.LENGTH_LONG).show();
+                             } else {
+                                 mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
+
+
+                                 Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
+                                 startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+
+                             }
                          }
                         }
                         }
@@ -96,9 +106,6 @@ public class EventPage extends AppCompatActivity {
 
 
 
-
-                Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
             }
         });
 
