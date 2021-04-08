@@ -105,6 +105,7 @@ public class Scrolltest extends AppCompatActivity {
                 Integer emin= myTimePicker.getMinute();
                 String etime = ehour+":"+emin;
                 String pswd_string= pswd.getText().toString().trim();
+                String attendee = "";
 
                 if(isEmpty(name) || isEmpty(cap) || isEmpty(desc) || isEmpty(tw)) {
                     Toast.makeText(getApplicationContext(),"Please Enter All fields",Toast.LENGTH_LONG).show();
@@ -113,7 +114,7 @@ public class Scrolltest extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Passwords Do Not Match",Toast.LENGTH_LONG).show();
                 }
                 else{
-                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string);
+                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string, attendee);
                     Toast.makeText(getApplicationContext(),"Event Created !!!",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),HomePage.class));
                 }
@@ -174,11 +175,12 @@ public class Scrolltest extends AppCompatActivity {
                 Integer emin= myTimePicker.getMinute();
                 String etime = ehour+":"+emin;
                 String pswd_string= pswd.getText().toString().trim();
+                String attendee = "";
 
 
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {
-                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string);
+                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string, attendee);
                 }
             }
         });
@@ -187,7 +189,7 @@ public class Scrolltest extends AppCompatActivity {
     /**
      * Creating new user node under 'users'
      */
-    private void createUser(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String pswd) {
+    private void createUser(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String pswd, String attendee) {
 
         cur_capacity = "0";
         if (TextUtils.isEmpty(userId)) {
@@ -195,7 +197,7 @@ public class Scrolltest extends AppCompatActivity {
         }
         String placeID = tid.getText().toString();
 
-        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, placeID);
+        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, placeID, attendee);
 
         mFirebaseDatabase.child(userId).setValue(user);
 

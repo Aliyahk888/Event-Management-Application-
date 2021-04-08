@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,6 +46,7 @@ public class EventPage extends AppCompatActivity {
         title= b.getString("Title");
         final String curcap= b.getString("CurCap");
         final String capacity= b.getString("Capacity");
+
         String date= b.getString("Date");
         String time= b.getString("Time");
         String desc= b.getString("Desc");
@@ -52,8 +54,9 @@ public class EventPage extends AppCompatActivity {
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
-// get reference to 'users' node
+        // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        String uid = mAuth.getCurrentUser().getUid();
 
         back=(Button)findViewById(R.id.back_tobrowse);
         back.setOnClickListener(new View.OnClickListener() {
@@ -65,14 +68,14 @@ public class EventPage extends AppCompatActivity {
 
        Query query = mFirebaseDatabase.orderByChild("name").equalTo(title);
 
+       //final String list = mFirebaseDatabase.child("attendee").toString();
 
         join=(Button)findViewById(R.id.joinbutton);
         join.setOnClickListener(new View.OnClickListener() {
-
-
             int val=Integer.parseInt(curcap)+1;
             String newval= Integer.toString(val);
             int cap_int=Integer.parseInt(capacity);
+
             @Override
             public void onClick(View v) {
                 mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -86,7 +89,8 @@ public class EventPage extends AppCompatActivity {
                                  Toast.makeText(getApplicationContext(), "Event full, sorry!", Toast.LENGTH_LONG).show();
                              } else {
                                  mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
-
+                                 //final String updated_list=list+","+uid;
+                                 //mFirebaseDatabase.child(parent).child("attendee").setValue(updated_list);
 
                                  Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
                                  startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
