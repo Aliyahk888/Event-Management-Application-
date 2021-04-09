@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +34,10 @@ public class EventPage extends AppCompatActivity {
     TextView EventDate;
     TextView EventTime;
     TextView EventDesc;
+    EditText pssd;
     Button back, join;
     String title;
-
+    LinearLayout cc;
 
 
     @Override
@@ -50,13 +52,22 @@ public class EventPage extends AppCompatActivity {
         String date= b.getString("Date");
         String time= b.getString("Time");
         String desc= b.getString("Desc");
+        String priv= b.getString("Priv");
+        final String pswd= b.getString("Pswd");
+
+        cc=(LinearLayout)findViewById(R.id.closed_check);
+        pssd=(EditText)findViewById(R.id.pswdinput);
+
+        if(priv.equals("Closed")) {
+            cc.setVisibility(View.VISIBLE);
+        }
+
 
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
-        String uid = mAuth.getCurrentUser().getUid();
 
         back=(Button)findViewById(R.id.back_tobrowse);
         back.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +81,7 @@ public class EventPage extends AppCompatActivity {
 
        //final String list = mFirebaseDatabase.child("attendee").toString();
 
+
         join=(Button)findViewById(R.id.joinbutton);
         join.setOnClickListener(new View.OnClickListener() {
             int val=Integer.parseInt(curcap)+1;
@@ -78,16 +90,17 @@ public class EventPage extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                final String epswd = pssd.getText().toString();
                 mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                          if(childSnapshot.child("name").getValue().equals(title)) {
                              String parent = childSnapshot.getKey();
-
                              if (val > cap_int) {
                                  Toast.makeText(getApplicationContext(), "Event full, sorry!", Toast.LENGTH_LONG).show();
-                             } else {
+                             }
+                             else if(epswd.equals(pswd)){
                                  mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
                                  //final String updated_list=list+","+uid;
                                  //mFirebaseDatabase.child(parent).child("attendee").setValue(updated_list);
@@ -95,6 +108,10 @@ public class EventPage extends AppCompatActivity {
                                  Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
                                  startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
 
+                             }
+                             else {
+                                 Toast.makeText(getApplicationContext(), "Invalid Password !!", Toast.LENGTH_LONG).show();
+                                 startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
                              }
                          }
                         }

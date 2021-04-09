@@ -17,8 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUp extends AppCompatActivity {
 
@@ -27,7 +30,7 @@ public class SignUp extends AppCompatActivity {
     private FirebaseDatabase mFirebaseInstance;
     private EditText eml, pwd, fullname, ph;
     private TextView tw;
-    private Button btn1, canc;
+    private Button reg, canc;
 
 
 
@@ -41,8 +44,12 @@ public class SignUp extends AppCompatActivity {
         pwd=(EditText)findViewById(R.id.psswd_input);
         fullname=(EditText)findViewById(R.id.name_input);
         ph=(EditText)findViewById(R.id.phone_input);
-        btn1=(Button)findViewById(R.id.register);
+        reg=(Button)findViewById(R.id.register);
         canc =(Button) findViewById(R.id.exit);
+
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+        mFirebaseDatabase = mFirebaseInstance.getReference("details");
 
         canc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,12 +58,18 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String fullnm = fullname.getText().toString().trim();
+                String emailid = eml.getText().toString().trim();
+                String number = ph.getText().toString().trim();
+                //String uid = mAuth.getCurrentUser().getUid();
+
+                Deets deets = new Deets(fullnm, emailid, number);
+                mFirebaseDatabase.push().setValue(deets);
 
                 registerUser();
-
             }
         });
 
@@ -96,18 +109,4 @@ public class SignUp extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -107,13 +107,13 @@ public class Scrolltest extends AppCompatActivity {
                 String pswd_string= pswd.getText().toString().trim();
                 String attendee = "";
 
-                if(isEmpty(name) || isEmpty(cap) || isEmpty(desc) || isEmpty(tw)) {
+                if(isEmpty(name) || isEmpty(cap) || isEmpty(desc)) {
                     Toast.makeText(getApplicationContext(),"Please Enter All fields",Toast.LENGTH_LONG).show();
                 }
                 else if(verifyPassword()&&priv_flag==0){
                     Toast.makeText(getApplicationContext(),"Passwords Do Not Match",Toast.LENGTH_LONG).show();
                 }
-                else{
+                else if(TextUtils.isEmpty(userId)){
                     createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string, attendee);
                     Toast.makeText(getApplicationContext(),"Event Created !!!",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(getApplicationContext(),HomePage.class));
@@ -157,7 +157,7 @@ public class Scrolltest extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
 
-
+        /*
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,11 +179,11 @@ public class Scrolltest extends AppCompatActivity {
 
 
                 // Check for already existed userId
-                if (TextUtils.isEmpty(userId)) {
-                    createUser(ename, event, privacy, ecap,ecur_cap, edesc, edate, etime, pswd_string, attendee);
-                }
+
             }
         });
+
+         */
 
     }
     /**
