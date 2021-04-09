@@ -10,7 +10,7 @@ public class User {
     public String time;
     public String password;
     public String cur_cap;
-    public String place;
+    public String coordinates;
     public String attendee;
 
     // Default constructor required for calls to
@@ -18,7 +18,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String Place, String attendee) {
+    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String coordinates, String attendee) {
         this.name = name;
         this.event = event;
         this.privacy = privacy;
@@ -28,7 +28,7 @@ public class User {
         this.time = time;
         this.password = password;
         this.cur_cap = cur_capacity;
-        this.place = Place;
+        this.coordinates = coordinates;
         this.attendee=attendee;
 
     }
@@ -53,7 +53,6 @@ public class User {
     public String getDate() {
         return date;
     }
-
 
     public String getCurCapacity() { return cur_cap; }
 

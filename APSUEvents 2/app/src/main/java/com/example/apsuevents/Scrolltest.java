@@ -37,7 +37,7 @@ public class Scrolltest extends AppCompatActivity {
     TextView tw, tid;
     EditText name, cap, desc, pswd, cpswd;
     int PLACE_PICKER_REQUEST = 1;
-    String etitle, ecap, edesc, pcheck, ecur_cap;
+    String etitle, ecap, edesc, pcheck, ecur_cap, coordinates;
     RadioButton eventBtn;
     RadioButton privacyBtn;
     DatePicker myDatePicker;
@@ -195,9 +195,8 @@ public class Scrolltest extends AppCompatActivity {
         if (TextUtils.isEmpty(userId)) {
             userId = mFirebaseDatabase.push().getKey();
         }
-        String placeID = tid.getText().toString();
 
-        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, placeID, attendee);
+        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, coordinates, attendee);
 
         mFirebaseDatabase.child(userId).setValue(user);
 
@@ -245,6 +244,7 @@ public class Scrolltest extends AppCompatActivity {
                 Place place = PlacePicker.getPlace(data, this);
                 tw.setText("!! Location has been selected !!");
                 tid.setText(place.getId());
+                coordinates = place.getLatLng().toString();
             }
         }
     }

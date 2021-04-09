@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 public class EventPage extends AppCompatActivity {
     String uid;
@@ -34,6 +38,7 @@ public class EventPage extends AppCompatActivity {
     TextView EventDate;
     TextView EventTime;
     TextView EventDesc;
+    Button emap;
     EditText pssd;
     Button back, join;
     String title;
@@ -53,16 +58,26 @@ public class EventPage extends AppCompatActivity {
         String time= b.getString("Time");
         String desc= b.getString("Desc");
         String priv= b.getString("Priv");
+        final String place= b.getString("Place");
         final String pswd= b.getString("Pswd");
 
         cc=(LinearLayout)findViewById(R.id.closed_check);
         pssd=(EditText)findViewById(R.id.pswdinput);
+        emap=(Button) findViewById(R.id.loc_button);
 
         if(priv.equals("Closed")) {
             cc.setVisibility(View.VISIBLE);
         }
 
-
+        emap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri mapUri = Uri.parse("geo:" + place);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
