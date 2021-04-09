@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +23,9 @@ public class UserProfile extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private Button backhome;
+    TextView d_username;
+    TextView d_email;
+    TextView d_mobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,16 @@ public class UserProfile extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         backhome = (Button) findViewById(R.id.backhome);
+        d_username=(TextView)findViewById(R.id.d_username);
+        d_email=(TextView)findViewById(R.id.d_email);
+        d_mobile=(TextView)findViewById(R.id.d_mobile);
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        // get reference to 'users' node
+        mFirebaseDatabase = mFirebaseInstance.getReference("details");
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,9 +50,10 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), HomePage.class));
             }
         });
-        /*
 
-        final String eml = mAuth.getCurrentUser().getEmail();
+
+        final String eml = user.getEmail();
+        d_email.setText(eml);
 
         mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -45,6 +61,11 @@ public class UserProfile extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                     if (childSnapshot.child("email").getValue().equals(eml)) {
                         String parent = childSnapshot.getKey();
+                        d_username.setText(snapshot.child(parent).child("fullname").getValue().toString());
+                        d_mobile.setText(snapshot.child(parent).child("phone").getValue().toString());
+
+
+
                     }
                 }
             }
@@ -55,7 +76,9 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-         */
+
+
+
     }
 }
 

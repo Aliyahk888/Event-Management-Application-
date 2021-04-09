@@ -29,7 +29,8 @@ public class User {
         this.password = password;
         this.cur_cap = cur_capacity;
         this.place = Place;
-        this.attendee = attendee;
+        this.attendee=attendee;
+
     }
 
 
@@ -55,7 +56,9 @@ public class User {
 
 
     public String getCurCapacity() { return cur_cap; }
+
 }
+
 
 
 
