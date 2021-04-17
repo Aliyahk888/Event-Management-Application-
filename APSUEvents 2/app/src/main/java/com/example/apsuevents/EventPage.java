@@ -117,16 +117,17 @@ public class EventPage extends AppCompatActivity {
                              }
                              else if(epswd.equals(pswd)){
                                  mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
+
                                  //final String updated_list=list+","+uid;
                                  //mFirebaseDatabase.child(parent).child("attendee").setValue(updated_list);
 
-                                 Toast.makeText(getApplicationContext(),"(: Event Successfully Joined :)",Toast.LENGTH_LONG).show();
+                                 Toast.makeText(getApplicationContext(),"Event Successfully Joined!",Toast.LENGTH_LONG).show();
                                  startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
 
                              }
                              else {
                                  Toast.makeText(getApplicationContext(), "Invalid Password !!", Toast.LENGTH_LONG).show();
-                                 startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+                                 //startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
                              }
                          }
                         }
@@ -165,5 +166,3 @@ public class EventPage extends AppCompatActivity {
 
 }
 
-//                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-//                            String parent = childSnapshot.getKey();

@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
 
 public class Scrolltest extends AppCompatActivity {
 
@@ -106,6 +107,7 @@ public class Scrolltest extends AppCompatActivity {
                 String etime = ehour+":"+emin;
                 String pswd_string= pswd.getText().toString().trim();
                 String attendee = "";
+
 
                 if(isEmpty(name) || isEmpty(cap) || isEmpty(desc)) {
                     Toast.makeText(getApplicationContext(),"Please Enter All fields",Toast.LENGTH_LONG).show();

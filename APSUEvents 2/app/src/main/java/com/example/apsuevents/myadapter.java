@@ -27,6 +27,7 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final User User) {
+
         if (User.getCurCapacity().equals(User.getCapacity()))
             holder.rel_id.setVisibility(View.GONE);
         else {

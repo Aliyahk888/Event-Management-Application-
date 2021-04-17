@@ -111,6 +111,27 @@ public class UserProfile extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
+                                            mFirebaseDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                        if (childSnapshot.child("email").getValue().equals(eml)) {
+                                                            String parent = childSnapshot.getKey();
+                                                            mFirebaseDatabase.child(parent).removeValue();
+
+                                                        }
+                                                    }
+
+
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
+
+
                                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         }
                                         else
