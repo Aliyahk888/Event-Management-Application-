@@ -1,5 +1,6 @@
 package com.example.apsuevents;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +22,8 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +41,7 @@ public class Scrolltest extends AppCompatActivity {
     TextView tw, tid;
     EditText name, cap, desc, pswd, cpswd;
     int PLACE_PICKER_REQUEST = 1;
-    String etitle, ecap, edesc, pcheck, ecur_cap, coordinates;
+    String etitle, ecap, edesc, pcheck, ecur_cap, coordinates, ehost, contact_host;
     RadioButton eventBtn;
     RadioButton privacyBtn;
     DatePicker myDatePicker;
@@ -49,6 +52,7 @@ public class Scrolltest extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private DatabaseReference mFirebaseDatabase;
+    private DatabaseReference mFirebaseDatabase2;
     private FirebaseDatabase mFirebaseInstance;
     private String userId;
 
@@ -150,13 +154,33 @@ public class Scrolltest extends AppCompatActivity {
 
 
 
-
-
+        final FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+        final String hostemail = user1.getEmail();
+        ehost = hostemail;
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        mFirebaseDatabase2 = mFirebaseInstance.getReference("details");
+
+
+        mFirebaseDatabase2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    if (childSnapshot.child("email").getValue().equals(ehost)) {
+                        String parent = childSnapshot.getKey();
+                        contact_host=snapshot.child(parent).child("phone").getValue().toString();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         /*
@@ -198,7 +222,7 @@ public class Scrolltest extends AppCompatActivity {
             userId = mFirebaseDatabase.push().getKey();
         }
 
-        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, coordinates, attendee);
+        User user = new User(name, event, privacy, capacity, cur_capacity, description, date, time, pswd, coordinates, attendee, ehost, contact_host);
 
         mFirebaseDatabase.child(userId).setValue(user);
 

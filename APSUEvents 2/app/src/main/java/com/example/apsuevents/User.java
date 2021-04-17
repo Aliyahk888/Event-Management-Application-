@@ -12,13 +12,15 @@ public class User {
     public String cur_cap;
     public String coordinates;
     public String attendee;
+    public String eventHost;
+    public String contactHost;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
     public User() {
     }
 
-    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String coordinates, String attendee) {
+    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String coordinates, String attendee, String eventhost, String contactHost) {
         this.name = name;
         this.event = event;
         this.privacy = privacy;
@@ -30,7 +32,8 @@ public class User {
         this.cur_cap = cur_capacity;
         this.coordinates = coordinates;
         this.attendee=attendee;
-
+        this.eventHost=eventhost;
+        this.contactHost=contactHost;
     }
 
 
@@ -55,6 +58,8 @@ public class User {
     }
 
     public String getCurCapacity() { return cur_cap; }
+
+    public String getEventHost() { return eventHost; }
 
 }
 

@@ -18,17 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewholder>
 {
+    final FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+    final String cur_email = user1.getEmail();
     public myadapter(@NonNull FirebaseRecyclerOptions<User> options) {
         super(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull final User User) {
-
-        if (User.getCurCapacity().equals(User.getCapacity()))
+        if(cur_email.equals(User.getEventHost()))
+            holder.rel_id.setVisibility(View.GONE);
+        else if (User.getCurCapacity().equals(User.getCapacity()))
             holder.rel_id.setVisibility(View.GONE);
         else {
             holder.name.setText(User.getName());
@@ -61,7 +66,7 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
         return new myviewholder(view);
     }
 
-    class myviewholder extends RecyclerView.ViewHolder
+    static class myviewholder extends RecyclerView.ViewHolder
     {
         int privFlag = 0;
         TextView name,type,date,cap,curCap;
@@ -92,7 +97,8 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
         open.putExtra("Priv", user.privacy);
         open.putExtra("Pswd", user.password);
         open.putExtra("Place", user.coordinates);
-
+        open.putExtra("Attendance", user.attendee);
+        open.putExtra("Call", user.contactHost);
         view.getContext().startActivity(open);
     }
 
