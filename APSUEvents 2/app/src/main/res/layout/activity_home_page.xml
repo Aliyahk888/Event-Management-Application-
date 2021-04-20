@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/common_google_signin_btn_text_dark_default"
+    android:background="#6C009688"
     tools:context=".HomePage">
 
     <ImageView
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/apsulogo" />
 
     <Button
         android:id="@+id/host"
@@ -29,6 +29,7 @@
         android:background="@drawable/roundedbuttons"
         android:fontFamily="@font/montserrat"
         android:text="Host Event"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,7 @@
         android:background="@drawable/roundedbuttons"
         android:fontFamily="@font/montserrat"
         android:text="Explore Events"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -60,6 +62,7 @@
         android:background="@drawable/roundedbuttons"
         android:fontFamily="@font/montserrat"
         android:text="My Events"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -76,6 +79,7 @@
         android:background="@drawable/roundedbuttons"
         android:fontFamily="@font/montserrat"
         android:text="My Account"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -89,8 +93,10 @@
         android:layout_marginStart="140dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="141dp"
+        android:background="@drawable/roundedbuttons"
         android:fontFamily="@font/montserrat"
         android:text="Sign Out"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

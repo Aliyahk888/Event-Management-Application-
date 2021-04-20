@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6C009688"
     tools:context=".UserProfile">
 
     <ImageView
@@ -13,7 +14,7 @@
         android:layout_marginStart="135dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="135dp"
-        android:background="@android:color/background_light"
+        android:background="#6C009688"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,7 @@
         android:layout_marginEnd="130dp"
         android:background="@drawable/roundedbuttons"
         android:text="Delete Account"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +87,7 @@
         android:layout_marginEnd="131dp"
         android:background="@drawable/roundedbuttons"
         android:text="Back to home"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

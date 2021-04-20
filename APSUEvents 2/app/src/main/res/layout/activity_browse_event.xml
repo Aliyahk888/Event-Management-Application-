@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6C009688"
     tools:context=".BrowseEvent">
 
     <LinearLayout
@@ -23,14 +24,15 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@drawable/roundedbuttons"
-            android:text="Back" />
+            android:text="Back"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
         <ImageView
             android:id="@+id/logoapsu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/apsulogo" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

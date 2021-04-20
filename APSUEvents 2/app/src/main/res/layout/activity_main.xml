@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#6C009688"
     tools:context=".MainActivity">
 
     <Button
@@ -15,6 +16,7 @@
         android:layout_marginEnd="131dp"
         android:background="@drawable/roundedbuttons"
         android:text="Login"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +31,7 @@
         android:layout_marginEnd="131dp"
         android:background="@drawable/roundedbuttons"
         android:text="Signup"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,24 +52,25 @@
 
     <TextView
         android:id="@+id/d_email"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat"
-        android:text="E-Mail"
+        android:gravity="right"
+        android:text="E-Mail :"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/psswd"
-        android:layout_width="120dp"
+        android:layout_width="125dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/montserrat"
-        android:text="Password"
+        android:text="Password :"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/d_email" />
@@ -96,7 +100,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/apsulogo" />
 
     <EditText
         android:id="@+id/editTextPassword"
