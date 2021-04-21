@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class BrowseEvent extends AppCompatActivity {
 
     RecyclerView recview;
+    TextView tw;
     myadapter adapter;
     Button bck;
 
@@ -23,8 +26,9 @@ public class BrowseEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_event);
 
+        tw = (TextView) findViewById(R.id.noevent);
 
-        bck=(Button)findViewById(R.id.backbutton);
+        bck = (Button) findViewById(R.id.backbutton);
         bck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,9 +37,7 @@ public class BrowseEvent extends AppCompatActivity {
         });
 
 
-
-
-        recview=(RecyclerView)findViewById(R.id.recview);
+        recview = (RecyclerView) findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<User> options =
@@ -43,9 +45,21 @@ public class BrowseEvent extends AppCompatActivity {
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("users"), User.class)
                         .build();
 
-        adapter=new myadapter(options);
+        adapter = new myadapter(options);
         recview.setAdapter(adapter);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (recview.getChildCount() == 0) {
+                    tw.setVisibility(View.VISIBLE);
+                }
+            }
+
+        }, 3500);
     }
+
+
 
     @Override
     protected void onStart() {
@@ -58,5 +72,4 @@ public class BrowseEvent extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
-
-}
+        }

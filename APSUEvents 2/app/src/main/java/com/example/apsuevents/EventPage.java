@@ -169,13 +169,12 @@ public class EventPage extends AppCompatActivity {
                              String parent = childSnapshot.getKey();
 
 
-                             if (childSnapshot.child("Attendance").child(new_phone).exists()){
-                                 Toast.makeText(getApplicationContext(), "You are already a part of this Event !!", Toast.LENGTH_LONG).show();
-                             }
-                             else if (val > cap_int) {
-                                 Toast.makeText(getApplicationContext(), "Event full, sorry!", Toast.LENGTH_LONG).show();
-                             }
-                             else if(epswd.equals(pswd)){
+                                if (childSnapshot.child("Attendance").child(new_phone).exists()){   Toast.makeText(getApplicationContext(), "You are already a part of this Event !!", Toast.LENGTH_LONG).show();
+                                    }
+                                else if (val > cap_int) {
+                                     Toast.makeText(getApplicationContext(), "Event full, sorry!", Toast.LENGTH_LONG).show();
+                                 }
+                                 else if(epswd.equals(pswd)){
                                  mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
                                  mFirebaseDatabase.child(parent).child("Attendance").child(new_phone).push().setValue(new_attendee);
                                  //final String updated_list=list+","+uid;
@@ -184,14 +183,14 @@ public class EventPage extends AppCompatActivity {
                                  //Toast.makeText(getApplicationContext(),"Event Successfully Joined!",Toast.LENGTH_LONG).show();
                                  startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
 
-                             }
-                             else {
-                                 Toast.makeText(getApplicationContext(), "Invalid Password !!", Toast.LENGTH_LONG).show();
-                                 //startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+                                }
+                                else {
+                                    Toast.makeText(getApplicationContext(), "Invalid Password !!", Toast.LENGTH_LONG).show();
+                                     //startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
+                                }
                              }
                          }
-                        }
-                        }
+                    }
 
 
                     @Override
