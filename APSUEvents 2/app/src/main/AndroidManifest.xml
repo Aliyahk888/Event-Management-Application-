@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".my_events"></activity>
+        <activity android:name=".my_event_page"></activity>
+        <activity android:name=".my_events" />
         <activity android:name=".EventPage" />
         <activity android:name=".BrowseEvent" />
         <activity android:name=".Scrolltest" />

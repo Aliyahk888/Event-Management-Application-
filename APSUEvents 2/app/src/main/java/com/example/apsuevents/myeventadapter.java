@@ -45,14 +45,12 @@ public class myeventadapter extends FirebaseRecyclerAdapter<User, myadapter.myvi
         } else {
             holder.priv_img.setBackgroundResource(R.drawable.lock);
         }
-        /*
         holder.rel_id.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openevent(v, User);
             }
         });
-        */
     }
 
 
@@ -82,7 +80,7 @@ public class myeventadapter extends FirebaseRecyclerAdapter<User, myadapter.myvi
     }
 
     public void openevent(View view, User user) {
-        Intent open = new Intent(view.getContext(), EventPage.class);
+        Intent open = new Intent(view.getContext(), my_event_page.class);
         open.putExtra("Title", user.name);
         open.putExtra("CurCap", user.cur_cap);
         open.putExtra("Capacity", user.capacity);

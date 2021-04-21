@@ -1,0 +1,89 @@
+package com.example.apsuevents;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+public class my_event_page extends AppCompatActivity {
+    private DatabaseReference mFirebaseDatabase;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private FirebaseDatabase mFirebaseInstance;
+    TextView EventTitle;
+    TextView EventCurCapacity;
+    TextView EventCapacity;
+    TextView EventDate;
+    TextView EventTime;
+    TextView EventDesc;
+    Button back;
+    String title;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_my_event_page);
+
+        back=(Button)findViewById(R.id.back_tobrowse);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), my_events.class));
+            }
+        });
+
+
+        final Bundle b = getIntent().getExtras();
+        title= b.getString("Title");
+        final String curcap= b.getString("CurCap");
+        final String capacity= b.getString("Capacity");
+
+        String date= b.getString("Date");
+        String time= b.getString("Time");
+        String desc= b.getString("Desc");
+        String priv= b.getString("Priv");
+        final String place= b.getString("Place");
+        final String pswd= b.getString("Pswd");
+        final String ph_host= b.getString("Call");
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+        mFirebaseDatabase = mFirebaseInstance.getReference("users");
+
+        EventTitle= (TextView)findViewById(R.id.EventTitle);
+        EventTitle.setText(title);
+        EventDesc= (TextView)findViewById(R.id.EventDesc);
+        EventDesc.setText(desc);
+        EventTime= (TextView)findViewById(R.id.EventTime);
+        EventTime.setText(time);
+        EventDate= (TextView)findViewById(R.id.EventDate);
+        EventDate.setText(date);
+
+        EventCurCapacity= (TextView)findViewById(R.id.EventCurCapacity);
+        EventCapacity= (TextView)findViewById(R.id.EventCapacity);
+        EventCapacity.setText(capacity);
+        EventCurCapacity.setText(curcap);
+
+
+
+    }
+}

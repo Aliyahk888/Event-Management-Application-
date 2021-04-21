@@ -97,7 +97,6 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
         open.putExtra("Priv", user.privacy);
         open.putExtra("Pswd", user.password);
         open.putExtra("Place", user.coordinates);
-        open.putExtra("Attendance", user.attendee);
         open.putExtra("Call", user.contactHost);
         view.getContext().startActivity(open);
     }

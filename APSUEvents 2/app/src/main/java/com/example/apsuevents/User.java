@@ -11,7 +11,6 @@ public class User {
     public String password;
     public String cur_cap;
     public String coordinates;
-    public String attendee;
     public String eventHost;
     public String contactHost;
 
@@ -20,7 +19,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String coordinates, String attendee, String eventhost, String contactHost) {
+    public User(String name, String event, String privacy, String capacity, String cur_capacity, String description, String date, String time, String password, String coordinates, String eventhost, String contactHost) {
         this.name = name;
         this.event = event;
         this.privacy = privacy;
@@ -31,7 +30,6 @@ public class User {
         this.password = password;
         this.cur_cap = cur_capacity;
         this.coordinates = coordinates;
-        this.attendee=attendee;
         this.eventHost=eventhost;
         this.contactHost=contactHost;
     }

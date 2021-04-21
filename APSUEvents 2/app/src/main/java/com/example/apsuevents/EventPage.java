@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.MapView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,12 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Map;
-
 public class EventPage extends AppCompatActivity {
-    String uid, attendees, new_attendee;
+    String new_attendee, new_phone;
     private DatabaseReference mFirebaseDatabase;
     private DatabaseReference mFirebaseDatabase2;
+    private DatabaseReference mFirebaseDatabase3;
     private static final String TAG = MainActivity.class.getSimpleName();
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth mAuth;
@@ -44,6 +41,7 @@ public class EventPage extends AppCompatActivity {
     Button back, join, call;
     String title, host_ph;
     LinearLayout cc;
+    int exists = 0;
 
 
     @Override
@@ -59,7 +57,6 @@ public class EventPage extends AppCompatActivity {
         String time= b.getString("Time");
         String desc= b.getString("Desc");
         String priv= b.getString("Priv");
-        final String att = b.getString("Attendance");
         final String place= b.getString("Place");
         final String pswd= b.getString("Pswd");
         final String ph_host= b.getString("Call");
@@ -84,6 +81,7 @@ public class EventPage extends AppCompatActivity {
                     if (childSnapshot.child("email").getValue().equals(userEmail)) {
                         String parent = childSnapshot.getKey();
                         new_attendee=snapshot.child(parent).child("fullname").getValue().toString();
+                        new_phone=snapshot.child(parent).child("phone").getValue().toString();
                     }
                 }
             }
@@ -95,14 +93,23 @@ public class EventPage extends AppCompatActivity {
         });
 
 
+       // mFirebaseDatabase3 = mFirebaseInstance.getReference("users");
+
+
+
+
+
+
         if(priv.equals("Closed")) {
             cc.setVisibility(View.VISIBLE);
         }
 
+        final String lat = place.substring(place.indexOf('(')+1,place.indexOf(')'));
+
         emap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri mapUri = Uri.parse("geo:" + place);
+                Uri mapUri = Uri.parse("geo:" + lat + "?q=" + lat);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, mapUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
@@ -135,17 +142,21 @@ public class EventPage extends AppCompatActivity {
             }
         });
 
-       Query query = mFirebaseDatabase.orderByChild("name").equalTo(title);
 
+        Query query = mFirebaseDatabase.orderByChild("name").equalTo(title);
        //final String list = mFirebaseDatabase.child("attendee").toString();
+        //final String attendance = new_attendee + "*" + att;
 
 
-        join=(Button)findViewById(R.id.joinbutton);
+
+
+
+
+        join=(Button)findViewById(R.id.delbutton);
         join.setOnClickListener(new View.OnClickListener() {
             int val=Integer.parseInt(curcap)+1;
             String newval= Integer.toString(val);
             int cap_int=Integer.parseInt(capacity);
-            String attendance = att + "->" + new_attendee;
 
             @Override
             public void onClick(View v) {
@@ -156,17 +167,21 @@ public class EventPage extends AppCompatActivity {
                         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                          if(childSnapshot.child("name").getValue().equals(title)) {
                              String parent = childSnapshot.getKey();
-                             if (val > cap_int) {
+
+
+                             if (childSnapshot.child("Attendance").child(new_phone).exists()){
+                                 Toast.makeText(getApplicationContext(), "You are already a part of this Event !!", Toast.LENGTH_LONG).show();
+                             }
+                             else if (val > cap_int) {
                                  Toast.makeText(getApplicationContext(), "Event full, sorry!", Toast.LENGTH_LONG).show();
                              }
                              else if(epswd.equals(pswd)){
                                  mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
-                                 mFirebaseDatabase.child(parent).child("attendee").setValue(attendance);
-
+                                 mFirebaseDatabase.child(parent).child("Attendance").child(new_phone).push().setValue(new_attendee);
                                  //final String updated_list=list+","+uid;
                                  //mFirebaseDatabase.child(parent).child("attendee").setValue(updated_list);
-
-                                 Toast.makeText(getApplicationContext(),"Event Successfully Joined!",Toast.LENGTH_LONG).show();
+                                 Toast.makeText(getApplicationContext(),"Event Successfully Joined",Toast.LENGTH_LONG).show();
+                                 //Toast.makeText(getApplicationContext(),"Event Successfully Joined!",Toast.LENGTH_LONG).show();
                                  startActivity(new Intent(getApplicationContext(), BrowseEvent.class));
 
                              }
