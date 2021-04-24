@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6C009688"
+    android:background="#486477"
     tools:context=".my_event_page">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#486477"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +149,16 @@
                 android:clickable="true"
                 android:text="Delete Event"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/members"
+                android:layout_width="229dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/roundedbuttons"
+                android:text="Participant list"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp" />
         </LinearLayout>
     </ScrollView>

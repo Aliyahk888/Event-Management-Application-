@@ -80,7 +80,7 @@ public class EventPage extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                     if (childSnapshot.child("email").getValue().equals(userEmail)) {
                         String parent = childSnapshot.getKey();
-                        new_attendee=snapshot.child(parent).child("fullname").getValue().toString();
+                        new_attendee=snapshot.child(parent).child("email").getValue().toString();
                         new_phone=snapshot.child(parent).child("phone").getValue().toString();
                     }
                 }
@@ -176,7 +176,7 @@ public class EventPage extends AppCompatActivity {
                                  }
                                  else if(epswd.equals(pswd)){
                                  mFirebaseDatabase.child(parent).child("cur_cap").setValue(newval);
-                                 mFirebaseDatabase.child(parent).child("Attendance").child(new_phone).push().setValue(new_attendee);
+                                 mFirebaseDatabase.child(parent).child("Attendance").child(new_phone).setValue(new_attendee);
                                  //final String updated_list=list+","+uid;
                                  //mFirebaseDatabase.child(parent).child("attendee").setValue(updated_list);
                                  Toast.makeText(getApplicationContext(),"Event Successfully Joined",Toast.LENGTH_LONG).show();

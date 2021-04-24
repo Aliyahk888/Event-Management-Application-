@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6C009688"
+    android:background="#486477"
     tools:context=".MainActivity">
 
     <Button
@@ -46,6 +46,11 @@
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/d_email"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -59,6 +64,7 @@
         android:fontFamily="@font/montserrat"
         android:gravity="right"
         android:text="E-Mail :"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -71,6 +77,7 @@
         android:layout_marginTop="25dp"
         android:fontFamily="@font/montserrat"
         android:text="Password :"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/d_email" />
@@ -85,6 +92,7 @@
         android:fontFamily="@font/roboto_bold"
         android:text="New? Signup now!"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +119,7 @@
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:shadowColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/psswd"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />

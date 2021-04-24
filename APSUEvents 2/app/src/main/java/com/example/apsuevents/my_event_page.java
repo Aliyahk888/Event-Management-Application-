@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class my_event_page extends AppCompatActivity {
     private DatabaseReference mFirebaseDatabase;
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -38,6 +39,9 @@ public class my_event_page extends AppCompatActivity {
     TextView EventTime;
     TextView EventDesc;
     Button back, del;
+    Button members;
+    String names="";
+    String merge;
 
 
     @Override
@@ -68,6 +72,78 @@ public class my_event_page extends AppCompatActivity {
         final String place= b.getString("Place");
         final String pswd= b.getString("Pswd");
         final String ph_host= b.getString("Call");
+
+
+        members=(Button)findViewById(R.id.members);
+        members.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(my_event_page.this);
+                mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                            if (childSnapshot.child("name").getValue().equals(title)) {
+                                String parent = childSnapshot.getKey();
+                                mFirebaseDatabase.child(parent).child("Attendance").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                            String id = childSnapshot.getKey();
+                                            names = names + "\n" + snapshot.child(id).getValue().toString();
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                if (names != "") {
+                    builder.setTitle("Participants");
+                    builder.setMessage(names);
+                }
+                // Set click listener for alert dialog buttons
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                // User clicked the No button
+                                break;
+                        }
+                    }
+                };
+                if(names!=""){
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Okay", dialogClickListener);
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("Cancel", dialogClickListener);
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+                names = "";
+            }
+            }
+        });
+
+
 
 
         del=(Button)findViewById(R.id.delbutton);

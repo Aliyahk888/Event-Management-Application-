@@ -10,6 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#486477"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -143,9 +144,9 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:background="@drawable/roundedbuttons"
-                android:text="Contact Event Host" />
+                android:text="Contact Event Host"
+                android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             <Button
                 android:id="@+id/loc_button"
@@ -162,8 +163,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/pswdtext"
@@ -190,11 +191,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/roundedbuttons"
                 android:clickable="true"
                 android:text="Join Event"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="24sp" />
         </LinearLayout>
     </ScrollView>
