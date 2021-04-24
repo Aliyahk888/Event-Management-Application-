@@ -4,34 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#486477"
+    android:layout_gravity="center"
+    android:background="#05090C"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/buttonSignIn"
-        android:layout_width="150dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="39dp"
         android:layout_marginEnd="131dp"
-        android:background="@drawable/roundedbuttons"
+        android:background="@drawable/buttonshape"
+        android:fontFamily="@font/montserrat"
         android:text="Login"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="#130D0D"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/psswd" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/signbtn"
-        android:layout_width="150dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="131dp"
-        android:background="@drawable/roundedbuttons"
+        android:background="@drawable/buttonshape"
+        android:backgroundTint="#FFFFFF"
+        android:fontFamily="@font/montserrat"
         android:text="Signup"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="#100808"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,12 +43,13 @@
 
     <EditText
         android:id="@+id/editTextEmail"
-        android:layout_width="220dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/textshape"
         android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:shadowColor="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -52,35 +57,8 @@
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/d_email"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/d_email"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/montserrat"
-        android:gravity="right"
-        android:text="E-Mail :"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <TextView
-        android:id="@+id/psswd"
-        android:layout_width="125dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Password :"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/d_email" />
 
     <TextView
         android:id="@+id/desc_signup"
@@ -89,7 +67,7 @@
         android:layout_marginStart="57dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="58dp"
-        android:fontFamily="@font/roboto_bold"
+        android:fontFamily="@font/montserrat"
         android:text="New? Signup now!"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
@@ -108,20 +86,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/apsulogo" />
+        app:srcCompat="@drawable/textshape" />
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="220dp"
+        android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/textshape"
         android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="Password"
         android:inputType="textPassword"
         android:shadowColor="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/psswd"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#486477"
+    android:background="#FFFFFF"
     tools:context=".UserProfile">
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_marginStart="135dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="135dp"
-        android:background="#6C009688"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,12 +65,14 @@
 
     <Button
         android:id="@+id/delacc"
-        android:layout_width="150dp"
+        android:layout_width="240dp"
         android:layout_height="50dp"
         android:layout_marginStart="131dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="130dp"
-        android:background="@drawable/roundedbuttons"
+        android:background="@drawable/buttonshape"
+        android:backgroundTint="#EA3434"
+        android:fontFamily="@font/montserrat"
         android:text="Delete Account"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
@@ -80,14 +82,16 @@
 
     <Button
         android:id="@+id/backhome"
-        android:layout_width="150dp"
+        android:layout_width="240dp"
         android:layout_height="50dp"
         android:layout_marginStart="130dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="131dp"
-        android:background="@drawable/roundedbuttons"
+        android:background="@drawable/textshape"
+        android:backgroundTint="#120909"
+        android:fontFamily="@font/montserrat"
         android:text="Back to home"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

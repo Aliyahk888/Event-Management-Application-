@@ -13,7 +13,7 @@
         android:id="@+id/rel_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#486477"
+        android:background="#FFFFFF"
         android:clickable="true"
         android:padding="15dp">
 
@@ -23,6 +23,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:fontFamily="@font/montserrat"
             android:text="This is Event Name"
             android:textColor="#000"
             android:textSize="25sp"
@@ -36,6 +37,7 @@
             android:layout_below="@id/nametext"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="0dp"
+            android:fontFamily="@font/montserrat"
             android:text="Type"
             android:textColor="#000"
             android:textSize="25sp" />
@@ -46,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/coursetext"
             android:layout_marginLeft="10dp"
+            android:fontFamily="@font/montserrat"
             android:text="Date"
             android:textColor="#000"
             android:textSize="25sp" />
@@ -64,6 +67,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="75dp"
             android:layout_toEndOf="@+id/curCap"
+            android:fontFamily="@font/montserrat"
             android:text="Cap"
             android:textSize="25sp" />
 

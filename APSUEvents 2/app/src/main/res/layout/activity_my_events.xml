@@ -11,6 +11,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="75dp"
+        android:background="#FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,21 +19,22 @@
 
         <Button
             android:id="@+id/backbutton"
-            android:layout_width="150dp"
+            android:layout_width="20dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:background="@drawable/roundedbuttons"
-            android:text="Back" />
+            android:background="@drawable/textshape"
+            android:backgroundTint="#0C0B0B"
+            android:fontFamily="@font/montserrat"
+            android:text="Back"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
         <ImageView
             android:id="@+id/logoapsu"
-            android:layout_width="wrap_content"
+            android:layout_width="179dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/apsulogo" />
+            android:layout_weight="1" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
