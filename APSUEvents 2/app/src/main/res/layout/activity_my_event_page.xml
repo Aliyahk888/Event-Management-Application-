@@ -133,7 +133,7 @@
             <TextView
                 android:id="@+id/EventTime"
                 android:layout_width="200dp"
-                android:layout_height="64dp"
+                android:layout_height="65dp"
                 android:layout_marginStart="105dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="106dp"
@@ -151,11 +151,11 @@
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/buttonshape"
-                android:backgroundTint="#0E0505"
+                android:background="@drawable/textshape"
+                android:backgroundTint="#0C0B0B"
                 android:fontFamily="@font/montserrat"
                 android:text="Participant list"
-                android:textColor="#FFFFFF"
+                android:textColor="#101010"
                 android:textSize="24sp" />
 
             <Button

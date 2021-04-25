@@ -35,9 +35,11 @@ public class UserProfile extends AppCompatActivity {
     TextView d_username;
     TextView d_email;
     TextView d_mobile;
-    Button delacc;
+    Button delacc,home;
     FirebaseUser user1;
     FirebaseUser user2;
+    String new_phone;
+    String joined_events="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +52,83 @@ public class UserProfile extends AppCompatActivity {
         d_mobile=(TextView)findViewById(R.id.d_mobile);
         delacc=(Button)findViewById(R.id.delacc);
         user1 = mAuth.getInstance().getCurrentUser();
+        home=(Button)findViewById(R.id.home);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
         // get reference to 'details' node
         mFirebaseDatabase = mFirebaseInstance.getReference("details");
 
-        //mFirebaseInstance2 = FirebaseDatabase.getInstance();
+        mFirebaseInstance2 = FirebaseDatabase.getInstance();
 
         // get reference to 'users' node
-        //mFirebaseDatabase2 = mFirebaseInstance.getReference("users");
+        mFirebaseDatabase2 = mFirebaseInstance.getReference("users");
 
         final FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
 
-        backhome.setOnClickListener(new View.OnClickListener() {
+        home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HomePage.class));
             }
+        });
+
+        backhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+                mFirebaseDatabase2.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                            if (childSnapshot.child("Attendance").child(new_phone).exists()){
+                                joined_events=joined_events+"\n"+childSnapshot.child("name").getValue().toString();
+
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                if (joined_events != "") {
+                    builder.setTitle("Events Joined");
+                    builder.setMessage(joined_events);
+                }
+                // Set click listener for alert dialog buttons
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                // User clicked the No button
+                                break;
+                        }
+                    }
+                };
+                if(joined_events!=""){
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Okay", dialogClickListener);
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("Cancel", dialogClickListener);
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+                    joined_events = "";
+                }
+            }
+
+
+
         });
 
 
@@ -81,6 +142,7 @@ public class UserProfile extends AppCompatActivity {
                 for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                     if (childSnapshot.child("email").getValue().equals(eml)) {
                         String parent = childSnapshot.getKey();
+                         new_phone=snapshot.child(parent).child("phone").getValue().toString();
                         d_username.setText(snapshot.child(parent).child("fullname").getValue().toString());
                         d_mobile.setText(snapshot.child(parent).child("phone").getValue().toString());
 

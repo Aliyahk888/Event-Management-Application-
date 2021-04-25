@@ -90,11 +90,21 @@
         android:background="@drawable/textshape"
         android:backgroundTint="#120909"
         android:fontFamily="@font/montserrat"
-        android:text="Back to home"
+        android:text="Events Joined"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/d_mobile" />
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="125dp"
+        android:layout_height="45dp"
+        android:background="@drawable/textshape"
+        android:backgroundTint="#040101"
+        android:text="Back"
+        tools:layout_editor_absoluteX="7dp"
+        tools:layout_editor_absoluteY="3dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                     startActivity(new Intent(getApplicationContext(), HomePage.class));
                 }
+                else
+                    Toast.makeText(getApplicationContext(), "Incorrect username or password", Toast.LENGTH_LONG).show();
             }
         });
     }
