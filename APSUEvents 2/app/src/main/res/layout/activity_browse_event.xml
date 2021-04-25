@@ -34,7 +34,8 @@
             android:layout_width="341dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/buttonshape" />
+            android:background="@drawable/buttonshape"
+            app:srcCompat="@drawable/paul2" />
 
     </LinearLayout>
 
@@ -59,7 +60,7 @@
         android:id="@+id/recview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#090505"
+        android:background="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

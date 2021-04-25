@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/textshape" />
+        app:srcCompat="@drawable/paul2" />
 
     <EditText
         android:id="@+id/editTextPassword"

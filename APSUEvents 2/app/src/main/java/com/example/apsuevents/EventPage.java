@@ -205,6 +205,29 @@ public class EventPage extends AppCompatActivity {
             }
         });
 
+        /*
+        String hours = time.substring(0,time.indexOf(':'));
+        String mins = time.substring(time.indexOf(':'));
+        int timeflag = 0;
+        int hrs=Integer.parseInt(hours);
+        if(hrs>=0 && hrs <=12) {
+            String ind = " am";
+            if(hrs == 0){
+                hrs=12;
+            }
+            else if(hrs == 12){
+                ind = " pm";
+            }
+            time = hrs + ":" + mins + ind;
+        }
+        else{
+            hrs=hrs-12;
+            time = hrs + ":" + mins + " pm";
+        }
+        
+         */
+
+
         EventTitle= (TextView)findViewById(R.id.EventTitle);
         EventTitle.setText(title);
         EventDesc= (TextView)findViewById(R.id.EventDesc);
