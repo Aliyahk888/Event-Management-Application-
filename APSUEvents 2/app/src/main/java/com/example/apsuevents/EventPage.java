@@ -233,7 +233,7 @@ public class EventPage extends AppCompatActivity {
         EventDesc= (TextView)findViewById(R.id.EventDesc);
         EventDesc.setText(desc);
         EventTime= (TextView)findViewById(R.id.EventTime);
-        EventTime.setText(time);
+        EventTime.setText("Time:  "+time);
         EventDate= (TextView)findViewById(R.id.EventDate);
         EventDate.setText(date);
 

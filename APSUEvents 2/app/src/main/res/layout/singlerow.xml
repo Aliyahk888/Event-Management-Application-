@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/coursetext"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/nametext"
             android:layout_marginLeft="10dp"
@@ -44,7 +44,7 @@
 
         <TextView
             android:id="@+id/datetext"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/coursetext"
             android:layout_marginLeft="10dp"
@@ -57,14 +57,14 @@
             android:id="@+id/privimg"
             android:layout_width="50dp"
             android:layout_height="40dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="50dp"
             android:layout_toEndOf="@+id/nametext" />
 
         <TextView
             android:id="@+id/captext"
-            android:layout_width="75dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="75dp"
             android:layout_toEndOf="@+id/curCap"
             android:fontFamily="@font/montserrat"
@@ -73,11 +73,12 @@
 
         <TextView
             android:id="@+id/curCap"
-            android:layout_width="75dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="75dp"
             android:layout_toEndOf="@+id/datetext"
+            android:text="CurCap"
             android:textAlignment="textEnd"
             android:textSize="25sp" />
 

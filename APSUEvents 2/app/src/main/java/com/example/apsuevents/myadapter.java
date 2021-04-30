@@ -40,7 +40,7 @@ public class myadapter extends FirebaseRecyclerAdapter<User, myadapter.myviewhol
             holder.type.setText(User.getEvent());
             holder.date.setText(User.getDate());
             holder.curCap.setText(User.getCurCapacity());
-            holder.cap.setText("/ " + User.getCapacity());
+            holder.cap.setText("/" + User.getCapacity());
             if (User.getPrivacy().equals("Closed")) {
                 holder.privFlag = 1;
             }
